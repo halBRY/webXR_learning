@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+		</style>
+	</head>
+
+    <!-- VERTEX SHADER -->    
+    <script id="vertexShader" type="x-shader/x-vertex">
+
+        //Attributes (inputs to the vert. shader)
+        attribute vec4 vPosition;
+        
+        //Varyings (outputs from the vert. shader)
+        varying vec4 fColor;
+        
+        //Uniforms 
+        //uniform mat4 uTransMat; //4x4 transformation matrix
+        
+        void
+        main()
+        {
+        
+            vec4 color = vec4(vPosition.x, vPosition.y, 0.0, 0.0);
+
+            gl_Position = vPosition;// * uTransMat;
+            fColor = color;
+        
+        }
+    </script>
+    
+    <!-- FRAGMENT SHADER --> 
+    <script id="fragmentShader" type="x-shader/x-fragment">
+        
+        precision mediump float;
+        
+        //Varyings (inputs to the frag. shader)
+        varying vec4 fColor;
+        
+        //Uniforms
+        
+        void
+        main()
+        {                 
+            gl_FragColor = fColor; 
+        }
+    </script>
+	<body>
+		<script type="module" src="/main.js"></script>
+	</body>
+</html>
